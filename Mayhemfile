@@ -1,0 +1,11 @@
+image: ghcr.io/capuanob/bison-fuzz:latest
+project: bison
+target: bison-fuzz
+tests:
+    - file://corpus
+
+cmds:
+  - cmd: /bison @@ -d --output=/dev/stdout
+    afl: true
+    max_length: 20000
+
