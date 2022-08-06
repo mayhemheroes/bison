@@ -1,6 +1,6 @@
 # C++ skeleton for Bison
 
-# Copyright (C) 2002-2015, 2018-2021 Free Software Foundation, Inc.
+# Copyright (C) 2002-2015, 2018-2022 Free Software Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -159,7 +159,7 @@ m4_ifdef([b4_lex_param], [, ]b4_lex_param))])])
 
 
 m4_pushdef([b4_copyright_years],
-           [2002-2015, 2018-2021])
+           [2002-2015, 2018-2022])
 
 m4_define([b4_parser_class],
           [b4_percent_define_get([[api.parser.class]])])
@@ -425,7 +425,7 @@ m4_define([b4_shared_declarations],
       /// Superclass.
       typedef basic_symbol<by_state> super_type;
       /// Construct an empty symbol.
-      stack_symbol_type ();
+      stack_symbol_type () YY_NOEXCEPT;
       /// Move or copy construction.
       stack_symbol_type (YY_RVREF (stack_symbol_type) that);
       /// Steal the contents from \a sym to build this.
@@ -678,7 +678,7 @@ m4_if(b4_prefix, [yy], [],
       return YY_CAST (symbol_kind_type, yystos_[+state]);
   }
 
-  ]b4_parser_class[::stack_symbol_type::stack_symbol_type ()
+  ]b4_parser_class[::stack_symbol_type::stack_symbol_type () YY_NOEXCEPT
   {}
 
   ]b4_parser_class[::stack_symbol_type::stack_symbol_type (YY_RVREF (stack_symbol_type) that)
@@ -847,7 +847,7 @@ m4_if(b4_prefix, [yy], [],
     int yylen = 0;
 
     // Error handling.
-    int yynerrs_ = 0;
+    int yynerrs_ YY_ATTRIBUTE_UNUSED = 0;
     int yyerrstatus_ = 0;
 
     /// The lookahead symbol.

@@ -1,11 +1,11 @@
 #                                                            -*- C -*-
 # Yacc compatible skeleton for Bison
 
-# Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software
+# Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2022 Free Software
 # Foundation, Inc.
 
 m4_pushdef([b4_copyright_years],
-           [1984, 1989-1990, 2000-2015, 2018-2021])
+           [1984, 1989-1990, 2000-2015, 2018-2022])
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -256,7 +256,7 @@ int yynerrs;]])])
 m4_define([b4_declare_parser_state_variables],
 [b4_pure_if([[
     /* Number of syntax errors so far.  */
-    int yynerrs]m4_ifval([$1], [ = 0])[;
+    int yynerrs YY_ATTRIBUTE_UNUSED]m4_ifval([$1], [ = 0])[;
 ]])[
     yy_state_fast_t yystate]m4_ifval([$1], [ = 0])[;
     /* Number of tokens to shift before error messages enabled.  */

@@ -1,6 +1,6 @@
 # C++ GLR skeleton for Bison
 
-# Copyright (C) 2002-2015, 2018-2021 Free Software Foundation, Inc.
+# Copyright (C) 2002-2015, 2018-2022 Free Software Foundation, Inc.
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -818,7 +818,7 @@ namespace ]b4_namespace_ref[
   class ]b4_parser_class[::glr_state
   {
   public:
-    glr_state ()
+    glr_state () YY_NOEXCEPT
       : yyresolved (false)
       , yylrState (0)
       , yyposn (0)
@@ -1410,7 +1410,7 @@ namespace
   class glr_stack_item
   {
   public:
-    glr_stack_item (bool state = true)
+    glr_stack_item (bool state = true) YY_NOEXCEPT
       : is_state_ (state)]b4_parse_assert_if([[
       , magic_ (MAGIC)]])[
     {

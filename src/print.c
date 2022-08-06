@@ -1,6 +1,6 @@
 /* Print information on generated parser, for bison,
 
-   Copyright (C) 1984, 1986, 1989, 2000-2005, 2007, 2009-2015, 2018-2021
+   Copyright (C) 1984, 1986, 1989, 2000-2005, 2007, 2009-2015, 2018-2022
    Free Software Foundation, Inc.
 
    This file is part of Bison, the GNU Compiler Compiler.
@@ -419,11 +419,9 @@ print_nonterminal_symbols (FILE *out)
             break;
         }
 
-      int column = 4 + mbswidth (tag, 0);
       fprintf (out, "%4s%s", "", tag);
       if (sym->content->type_name)
-        column += fprintf (out, " <%s>",
-                           sym->content->type_name);
+        fprintf (out, " <%s>", sym->content->type_name);
       fprintf (out, " (%d)\n", i);
 
       if (on_left)

@@ -1,6 +1,6 @@
 # Configure template for GNU Bison.                   -*-Autoconf-*-
 #
-# Copyright (C) 2001-2015, 2018-2021 Free Software Foundation, Inc.
+# Copyright (C) 2001-2015, 2018-2022 Free Software Foundation, Inc.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ AC_INIT([GNU Bison],
         [bug-bison@gnu.org],
         [],
         [https://www.gnu.org/software/bison/])
-AC_SUBST([PACKAGE_COPYRIGHT_YEAR], [2021])
+AC_SUBST([PACKAGE_COPYRIGHT_YEAR], [2022])
 AC_DEFINE_UNQUOTED([PACKAGE_COPYRIGHT_YEAR], [$PACKAGE_COPYRIGHT_YEAR],
                    [The copyright year for this package])
 
@@ -54,9 +54,6 @@ AC_PROG_CXX
 
 # Gnulib (early checks).
 gl_EARLY
-
-# We want ostream_printf and hyperlink support.
-gl_LIBTEXTSTYLE_OPTIONAL([0.20.5])
 
 # Gnulib uses '#pragma GCC diagnostic push' to silence some
 # warnings, but older gcc doesn't support this.
@@ -132,6 +129,7 @@ if test "$enable_gcc_warnings" = yes; then
     -Wformat -Wimplicit-fallthrough -Wmismatched-dealloc -Wnull-dereference
     -Wno-sign-compare -Wno-tautological-constant-out-of-range-compare
     -Wpointer-arith -Wshadow -Wstrict-aliasing
+    -Wunused-but-set-variable
     -Wwrite-strings
     -wr188 -wr2259 -wr3179'
   warn_c='-Wbad-function-cast
@@ -228,6 +226,16 @@ if test "$enable_gcc_warnings" = yes; then
   gl_WARN_ADD([-Wno-deprecated], [WNO_DEPRECATED_CXXFLAGS])
   CXXFLAGS=$save_CXXFLAGS
   AC_LANG_POP([C++])
+
+  AC_DEFINE([lint], [1], [Define to 1 if the compiler is checking for lint.])
+  AH_VERBATIM([FORTIFY_SOURCE],
+    [/* Enable compile-time and run-time bounds-checking, and some warnings,
+        without upsetting glibc 2.15+. */
+     #if !defined _FORTIFY_SOURCE && defined __OPTIMIZE__ && __OPTIMIZE__
+     # define _FORTIFY_SOURCE 2
+     #endif
+    ])
+  AC_DEFINE([GNULIB_PORTCHECK], [1], [Enable some gnulib portability checks.])
 fi
 
 
@@ -284,6 +292,9 @@ AC_C_INLINE
 # Gnulib (later checks).  Putting them here rather than right after
 # gl_EARLY avoids some redundant checks.
 gl_INIT
+
+# We want ostream_printf and hyperlink support.
+gl_LIBTEXTSTYLE_OPTIONAL([0.20.5])
 
 # Checks for library functions.
 AC_CHECK_FUNCS_ONCE([setlocale])
