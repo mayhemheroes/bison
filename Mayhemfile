@@ -1,7 +1,6 @@
-image: ghcr.io/capuanob/bison-fuzz:latest
 project: bison
 target: bison-fuzz
-tests:
+testsuite:
     - file://corpus
 
 cmds:
