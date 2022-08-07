@@ -14,6 +14,10 @@ RUN git submodule update --recursive --remote
 WORKDIR /bison/submodule/autoconf
 RUN git submodule update --remote --merge
 
+## Update gnulib to latest
+WORKDIR /bison/gnulib
+RUN git submodule update --remote --merge
+
 ## Install autoconf 2.7.1
 WORKDIR /
 RUN wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.71.tar.xz
