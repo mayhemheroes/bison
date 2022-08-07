@@ -17,6 +17,7 @@ RUN git submodule update --remote --merge
 ## Update gnulib to latest
 WORKDIR /bison/gnulib
 RUN git submodule update --remote --merge
+RUN git fetch origin && git reset --hard origin/master
 
 ## Install autoconf 2.7.1
 WORKDIR /
