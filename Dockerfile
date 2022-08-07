@@ -38,6 +38,7 @@ ENV CC="afl-clang-fast"
 ENV CXX="afl-clang-fast++"
 
 WORKDIR /bison
+RUN echo 1.0.0 > .tarball-version
 RUN ./bootstrap
 RUN mv doc/fdl.texi~ doc/fdl.texi
 RUN ./configure enable_yacc=no
