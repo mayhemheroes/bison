@@ -40,7 +40,7 @@ ENV CXX="afl-clang-fast++"
 WORKDIR /bison
 RUN echo 1.0.0 > .tarball-version
 RUN ./bootstrap
-RUN mv doc/fdl.texi~ doc/fdl.texi
+RUN mv doc/fdl.texi~ doc/fdl.texi || true
 RUN ./configure enable_yacc=no
 RUN make -j$(nproc)
 RUN make install
